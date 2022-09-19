@@ -1,0 +1,37 @@
+:host {
+  display: block;
+  margin-top: 1rem;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+mat-paginator {
+  margin-top: 1rem;
+}
+
+.info-text {
+  text-align: center;
+}
+
+.custom.mat-card {
+  margin: 10px;
+}
+
+.post-image {
+  width: 50%;
+}
+
+.post-image img {
+  width: 100%;
+  box-shadow: 1px  1px 5px rgba(37, 36, 36, 0.5);
+}
+
+dfn {
+  font-size: 16px;
+}
+
+p.usage {
+  text-indent: 20px;
+}

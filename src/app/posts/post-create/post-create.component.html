@@ -1,0 +1,74 @@
+<!--
+
+  value as a regular html attribute won't work
+  properties of the underlying object of the html element using []
+  [] directly targets the property [name] of the underlying object and bind val between quotes to that object
+  NOTE: value between "" will be types of code
+    - to have what's in "" be a regular string, wrap it in ''
+    - looks fro property of what's between the ""
+
+-->
+
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        formControlName="word"
+        placeholder="Word"
+      />
+      <!-- validation can be added here -->
+      <mat-error *ngIf="form.get('word').invalid">
+        Please enter a new word entry
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="5"
+        formControlName="definition"
+        placeholder="Definition"
+      ></textarea>
+      <mat-error *ngIf="form.get('definition').invalid">
+        Please enter a definition
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Part of Speech</mat-label>
+      <mat-select
+        formControlName="partOfSpeech"
+      >
+        <mat-option value="noun"> noun </mat-option>
+        <mat-option value="verb"> verb </mat-option>
+        <mat-option value="adjective"> adjective </mat-option>
+        <mat-option value="adverb"> adverb </mat-option>
+        <mat-option value="exclamation"> exclamation </mat-option>
+        <mat-option value="phrase"> phrase </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="5"
+        formControlName="use"
+        placeholder="Example of usage"
+      ></textarea>
+    </mat-form-field>
+
+
+    <div class="image-pick-button">
+      <button mat-button mat-stroked-button type="button" color="primary" (click)="filePicker.click()">Pick Image</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview" [alt]="form.value.word">
+    </div>
+
+
+    <button mat-raised-button color="accent" type="submit">Save Post</button>
+  </form>
+</mat-card>
